@@ -18,7 +18,7 @@ const todoSlice = createSlice({
                 text: action.payload,
                 isEdit: false
             };
-            state.todos.push(todo);
+            todo.text ? (state.todos.unshift(todo)) : alert("Please write a TODO");
         },
         deleteTodo: (state, action) => {
             state.todos = state.todos.filter(todo => todo.id !== action.payload);
