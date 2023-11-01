@@ -23,12 +23,11 @@ const todoSlice = createSlice({
         deleteTodo: (state, action) => {
             state.todos = state.todos.filter(todo => todo.id !== action.payload);
         },
+        editTodo: (state, action) => {
+            state.todos = state.todos.map(todo => (todo.id === action.payload) ? { ...todo, isEdit: true } : todo)
+        },
         updateTodo: (state, action) => {
-            const { id, text } = action.payload;
-            const updateableTodo = state.todos.find(todo => todo.id == id);
-            if (updateableTodo) {
-                updateableTodo.text = text;
-            }
+            state.todos = state.todos.map((todo) => todo.isEdit ? { ...todo, text: action.payload, isEdit: false } : todo)
         }
     }
 });

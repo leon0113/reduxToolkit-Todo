@@ -1,14 +1,10 @@
 /* eslint-disable no-unused-vars */
 import { useSelector, useDispatch } from 'react-redux'
-import { deleteTodo, updateTodo } from '../features/todo/todoSlice'
+import { deleteTodo, editTodo, updateTodo } from '../features/todo/todoSlice'
 
 function Todos() {
     const todos = useSelector(state => state.todos)
     const dispatch = useDispatch();
-
-    const editTodo = ({ id, text }) => {
-        // updateTodo(id, text);
-    }
 
     return (
         <>
@@ -22,7 +18,7 @@ function Todos() {
                         <div className='text-white'>{todo.text}</div>
                         <button
                             className="text-white bg-yellow-500 border-0 py-1 px-4 focus:outline-none hover:bg-yellow-600 rounded text-md"
-                            onClick={() => editTodo(todo)}
+                            onClick={() => dispatch(editTodo(todo.id))}
                         >Edit</button>
                         <button
                             onClick={() => dispatch(deleteTodo(todo.id))}
