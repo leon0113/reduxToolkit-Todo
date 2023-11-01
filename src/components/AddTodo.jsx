@@ -1,17 +1,17 @@
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTodo } from "../features/todo/todoSlice";
+import { useState } from "react";
 
-function AddTodo() {
-
-    const [input, setInput] = useState("");
+const AddTodo = () => {
+    const [input, setInput] = useState('');
     const dispatch = useDispatch();
 
-    const addTodoHandler = (e) => {
+    const addTodoHandler = e => {
         e.preventDefault();
         dispatch(addTodo(input));
-        setInput("");
+        setInput('');
     }
+
 
     return (
         <form onSubmit={addTodoHandler} className="space-x-3 mt-12">
@@ -22,6 +22,7 @@ function AddTodo() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
             />
+
             <button
                 type="submit"
                 className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
@@ -30,6 +31,6 @@ function AddTodo() {
             </button>
         </form>
     )
-}
+};
 
-export default AddTodo
+export default AddTodo;
