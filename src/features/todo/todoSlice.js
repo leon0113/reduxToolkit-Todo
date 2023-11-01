@@ -28,11 +28,14 @@ const todoSlice = createSlice({
         },
         updateTodo: (state, action) => {
             state.todos = state.todos.map((todo) => todo.isEdit ? { ...todo, text: action.payload, isEdit: false } : todo)
+        },
+        cancelEditTodo: (state) => {
+            state.todos = state.todos.map((todo) => todo.isEdit ? { ...todo, isEdit: false } : todo)
         }
     }
 });
 
 
-export const { addTodo, editTodo, updateTodo, deleteTodo } = todoSlice.actions;
+export const { addTodo, editTodo, updateTodo, deleteTodo, cancelEditTodo } = todoSlice.actions;
 
 export default todoSlice.reducer;

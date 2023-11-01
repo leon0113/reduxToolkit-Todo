@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addTodo, updateTodo } from "../features/todo/todoSlice";
+import { addTodo, cancelEditTodo, updateTodo } from "../features/todo/todoSlice";
 import { useEffect, useState } from "react";
 
 const AddTodo = () => {
@@ -21,6 +21,12 @@ const AddTodo = () => {
         setInput('');
         setEditMode(false);
     };
+
+    const cancelEdit = () => {
+        dispatch(cancelEditTodo());
+        setEditMode(false);
+        setInput('')
+    }
 
 
     useEffect(() => {
@@ -49,6 +55,15 @@ const AddTodo = () => {
             >
                 {editMode ? `Update` : `Add`} Todo
             </button>
+
+            {
+                editMode ? <button
+                    onClick={cancelEdit}
+                    className="text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg"
+                >
+                    Cancel
+                </button> : ""
+            }
         </form>
     )
 };
